@@ -1,0 +1,54 @@
+<div class="container">
+  <h1 class="text-center my-4">Selectores</h1>
+  <hr>
+  <div class="row g-md-4 justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <form [formGroup]="selectForm" (ngSubmit)="guardar()">
+
+        <div class="row mb-3">
+          <label for="region" class="col-form-label col-md-3">Continente:</label>
+          <div class="col-md-9">
+            <select id="region" class="form-select" formControlName="region">
+              <option value="">-- Seleccione contiente --</option>
+              <option [value]="region | lowercase" *ngFor=" let region of regiones">
+                {{region}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="paises.length > 0" class="row mb-3">
+          <label for="pais" class="col-form-label col-md-3">Paises:</label>
+          <div class="col-md-9">
+            <select id="pais" class="form-select" formControlName="pais">
+              <option value="">-- Seleccione pais --</option>
+              <option [value]="pais.cioc| lowercase" *ngFor=" let pais of paises">
+                {{pais.name.common}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="fronteras" class="row mb-3">
+          <label for="frontera" class="col-form-label col-md-3">Fronteras:</label>
+          <div class="col-md-9">
+            <select id="frontera" class="form-select" formControlName="frontera">
+              <option value="">-- Seleccione pais fronterizo --</option>
+              <option [value]="frontera | lowercase" *ngFor=" let frontera of fronteras.borders">
+                {{frontera}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-grid mb-3 d-sm-flex justify-content-sm-end">
+          <button type="submit" class="btn btn-primary">Seleccionar</button>
+        </div>
+
+      </form>
+    </div>
+    <div class="col-md-4 text-center text-md-start">
+      <h3>Formulario</h3>
+      <pre>Valid: {{selectForm.valid | json}}</pre>
+      <h3>Formulario</h3>
+      <pre>Value: {{selectForm.value | json}}</pre>
+    </div>
+  </div>
+</div>
